@@ -7,8 +7,9 @@ import {
 	Image,
 	Pressable,
 } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
+import React from 'react';
 
 export default function App() {
 	return (
@@ -41,14 +42,21 @@ export default function App() {
 					}}></Image>
 			</View>
 			<View style={styles.buttonBox}>
-				<Link href='/signin' asChild>
-					<Pressable>
-						<Text style={styles.button}>Sign In</Text>
-					</Pressable>
-				</Link>
-				<Link href='/signup' asChild>
-					<Pressable>
-						<Text style={styles.button}>Sign Up</Text>
+				<Pressable
+					style={({ pressed }) => [
+						styles.button,
+						{ opacity: pressed ? '0.9' : '1' },
+					]}
+					onPress={() => router.push('/(auth)/signin')}>
+					<Text style={styles.buttonText}>Sign In</Text>
+				</Pressable>
+				<Link href='/(auth)/signup'>
+					<Pressable
+						style={({ pressed }) => [
+							styles.button,
+							{ backgroundColor: '#FED9B7', opacity: pressed ? '0.9' : '1' },
+						]}>
+						<Text style={styles.buttonText}>Sign Up</Text>
 					</Pressable>
 				</Link>
 				<StatusBar style='auto' />
@@ -100,18 +108,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		flexWrap: 'wrap',
 		flexDirection: 'row',
-        rowGap: 20,
+		rowGap: 20,
 	},
 	button: {
-        width: vw(70),
-        // height: 'auto',
-		fontSize: 30,
+		width: vw(70),
+		// height: 'auto',
 		backgroundColor: '#FDFCDC',
-        borderRadius: 35,
-        textAlign: 'center',
-        fontFamily: 'Inter',
-        padding: 20,
-        overflow: 'hidden'
+		borderRadius: 35,
+		padding: 20,
+		overflow: 'hidden',
+	},
+	buttonText: {
+		textAlign: 'center',
+		fontFamily: 'Inter',
+		fontSize: 20,
 	},
 });
 
