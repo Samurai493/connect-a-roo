@@ -55,7 +55,8 @@ export default function App() {
 						style={({ pressed }) => [
 							styles.button,
 							{ backgroundColor: '#FED9B7', opacity: pressed ? '0.9' : '1' },
-						]}>
+						]}
+						onPress={() => router.push('/(auth)/signup')}>
 						<Text style={styles.buttonText}>Sign Up</Text>
 					</Pressable>
 				</Link>

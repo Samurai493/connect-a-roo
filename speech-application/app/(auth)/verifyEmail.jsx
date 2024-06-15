@@ -10,56 +10,52 @@ import {
 } from 'react-native';
 import React from 'react';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
-const SignIn = () => {
+const VerifyEmail = () => {
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.background}>
 				<View style={styles.uplift}>
 					<Image
-						source={require('../../assets/kangaroo.png')}
+						source={require('../../assets/kangaroo-question.png')}
 						style={{
 							position: 'absolute',
-							top: -90,
+							top: -155,
 							left: 17,
 							right: 0,
-                            width: 112,
-                            resizeMode: 'contain',
+							width: 112,
+							resizeMode: 'contain',
 						}}></Image>
-					<TextInput
-						style={[{ marginTop: vh(10) }, styles.input]}
-						placeholder='Email'
-						placeholderTextColor='black'
-					/>
-					<TextInput
-						style={styles.input}
-						placeholder='Password'
-						placeholderTextColor='black'
-					/>
+					<Text style={styles.titleText}>Verify Your Email</Text>
+					<Text style={styles.smallText}>
+						Please enter the 4-digit code sent to your email
+					</Text>
+					<View style={styles.inputHolder}>
+						<TextInput style={styles.input} placeholderTextColor='black' />
+						<TextInput style={styles.input} placeholderTextColor='black' />
+						<TextInput style={styles.input} placeholderTextColor='black' />
+						<TextInput style={styles.input} placeholderTextColor='black' />
+					</View>
 					<Pressable
 						style={({ pressed }) => [
 							{
 								opacity: pressed ? '0.8' : '1',
+								marginBottom: 20,
+								marginTop: 20,
 							},
 							styles.button,
-						]}>
-						<Text style={styles.buttonText}>Sign In</Text>
+						]}
+						onPress={() => router.push('/(auth)/signin')}>
+						<Text style={styles.buttonText}>Verify</Text>
 					</Pressable>
-					<Link style={styles.smallText} href='/(auth)/forgotPassword'>
-						Forgot password?
-					</Link>
-					<Link style={styles.smallText} href='/(auth)/signup'>
-						Don't have an account?
-						<Text style={{ color: '#F07167' }}> Sign Up</Text>
-					</Link>
 				</View>
 			</View>
 		</TouchableWithoutFeedback>
 	);
 };
 
-export default SignIn;
+export default VerifyEmail;
 
 const styles = StyleSheet.create({
 	background: {
@@ -70,10 +66,12 @@ const styles = StyleSheet.create({
 		boxSizing: 'border-box',
 	},
 	titleText: {
-		fontSize: 45,
+		fontSize: 35,
 		fontWeight: '800',
 		fontFamily: 'Inter',
 		paddingTop: 10,
+		color: 'white',
+		textAlign: 'center',
 	},
 	smallText: {
 		fontSize: 15,
@@ -87,25 +85,35 @@ const styles = StyleSheet.create({
 	uplift: {
 		backgroundColor: '#0081A7',
 		width: vw(100),
-		height: vh(75),
-		marginTop: vh(25),
+		height: vh(55),
+		marginTop: vh(45),
 		borderRadius: 25,
 		padding: 40,
 		display: 'flex',
 		flex: 1,
-		alignContent: 'top',
 		justifyContent: 'center',
 		flexWrap: 'wrap',
 		flexDirection: 'row',
-		rowGap: 20,
+		paddingBottom: 100,
+	},
+	inputHolder: {
+		display: 'flex',
+		flex: 1,
+		justifyContent: 'space-between',
+		flexWrap: 'wrap',
+		flexDirection: 'row',
+		paddingBottom: 40,
+		paddingTop: 40,
 	},
 	input: {
-		width: vw(80),
+		width: 60,
 		padding: 15,
-		fontSize: 18,
-		borderRadius: 31,
-		color: 'black',
+		height: 70,
 		backgroundColor: '#FDFCDC',
+		fontSize: 18,
+		borderRadius: 10,
+		color: 'black',
+		display: 'inline-block',
 		// paddingLeft: 30,
 	},
 	button: {

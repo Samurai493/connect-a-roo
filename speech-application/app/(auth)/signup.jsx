@@ -12,7 +12,7 @@ import React from 'react';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import { Link } from 'expo-router';
 
-const SignIn = () => {
+const SignUp = () => {
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.background}>
@@ -24,8 +24,8 @@ const SignIn = () => {
 							top: -90,
 							left: 17,
 							right: 0,
-                            width: 112,
-                            resizeMode: 'contain',
+							width: 112,
+							resizeMode: 'contain',
 						}}></Image>
 					<TextInput
 						style={[{ marginTop: vh(10) }, styles.input]}
@@ -37,6 +37,11 @@ const SignIn = () => {
 						placeholder='Password'
 						placeholderTextColor='black'
 					/>
+					<TextInput
+						style={styles.input}
+						placeholder='Confirm password'
+						placeholderTextColor='black'
+					/>
 					<Pressable
 						style={({ pressed }) => [
 							{
@@ -44,14 +49,11 @@ const SignIn = () => {
 							},
 							styles.button,
 						]}>
-						<Text style={styles.buttonText}>Sign In</Text>
+						<Text style={styles.buttonText}>Create Account</Text>
 					</Pressable>
-					<Link style={styles.smallText} href='/(auth)/forgotPassword'>
-						Forgot password?
-					</Link>
-					<Link style={styles.smallText} href='/(auth)/signup'>
-						Don't have an account?
-						<Text style={{ color: '#F07167' }}> Sign Up</Text>
+					<Link style={styles.smallText} href='/(auth)/signin'>
+						Already have an account?
+						<Text style={{ color: '#F07167' }}> Sign In</Text>
 					</Link>
 				</View>
 			</View>
@@ -59,7 +61,7 @@ const SignIn = () => {
 	);
 };
 
-export default SignIn;
+export default SignUp;
 
 const styles = StyleSheet.create({
 	background: {
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
 		fontWeight: '800',
 		fontFamily: 'Inter',
 		paddingTop: 10,
+		backgroundColor: '#FDFCDC',
 	},
 	smallText: {
 		fontSize: 15,
@@ -102,10 +105,10 @@ const styles = StyleSheet.create({
 	input: {
 		width: vw(80),
 		padding: 15,
+		backgroundColor: '#FDFCDC',
 		fontSize: 18,
 		borderRadius: 31,
 		color: 'black',
-		backgroundColor: '#FDFCDC',
 		// paddingLeft: 30,
 	},
 	button: {
