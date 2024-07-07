@@ -1,4 +1,4 @@
-Download Expo GO from the app store 
-/ google play Run "npm i" Run "npx expo start -c" 
-/ Scan the QR code with Camera (iOS) 
-/ Expo Go (Android)
+<p>Download Expo GO from the app store</p>
+<p>google play Run "npm i" Run "npx expo start -c" </p>
+<p>Scan the QR code with Camera (iOS) </p>
+<p> Expo Go (Android) </p>
