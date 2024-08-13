@@ -9,9 +9,29 @@ import {
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function App() {
+	const [fontsLoaded, error] = useFonts({
+		'Inter': require('../assets/fonts/Inter.ttf'),
+	  });
+	
+	  useEffect(() => {
+		if (fontsLoaded) {
+		  SplashScreen.hideAsync();
+		}
+		if (error) {
+		  console.error('Error loading fonts', error);
+		}
+	  }, [fontsLoaded, error]);
+	
+	
+	  if (!fontsLoaded) {
+		return null; // Or a splash screen or loading component
+	  }
+
 	return (
 		<View style={styles.container}>
 			<View
@@ -45,7 +65,7 @@ export default function App() {
 				<Pressable
 					style={({ pressed }) => [
 						styles.button,
-						{ opacity: pressed ? '0.9' : '1' },
+						{ opacity: pressed ? 0.9 : 1 },
 					]}
 					onPress={() => router.push('/(auth)/signin')}>
 					<Text style={styles.buttonText}>Sign In</Text>
@@ -54,7 +74,7 @@ export default function App() {
 					<Pressable
 						style={({ pressed }) => [
 							styles.button,
-							{ backgroundColor: '#FED9B7', opacity: pressed ? '0.9' : '1' },
+							{ backgroundColor: '#FED9B7', opacity: pressed ? 0.9 : 1 },
 						]}
 						onPress={() => router.push('/(auth)/signup')}>
 						<Text style={styles.buttonText}>Sign Up</Text>
@@ -71,7 +91,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#FDFCDC',
 		alignItems: 'center',
-		justifyContent: 'top',
+		justifyContent: 'space-between',
 		boxSizing: 'border-box',
 	},
 	titleText: {
@@ -89,7 +109,7 @@ const styles = StyleSheet.create({
 		width: vw(100),
 		height: 0,
 		marginBottom: 0,
-		borderTopWidth: '100%',
+		borderTopWidth: 1,
 		borderTopColor: '#FDFCDC',
 		borderLeftWidth: 0,
 		borderLeftColor: 'transparent',
@@ -100,7 +120,6 @@ const styles = StyleSheet.create({
 	},
 	buttonBox: {
 		backgroundColor: '#0081A7',
-		height: vh(55),
 		width: vw(100),
 		zIndex: -1,
 		display: 'flex',
