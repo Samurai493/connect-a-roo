@@ -62,6 +62,7 @@ export default function App() {
 					}}></Image>
 			</View>
 			<View style={styles.buttonBox}>
+<<<<<<< HEAD
 				<Pressable
 					style={({ pressed }) => [
 						styles.button,
@@ -70,6 +71,18 @@ export default function App() {
 					onPress={() => router.push('/(auth)/signin')}>
 					<Text style={styles.buttonText}>Sign In</Text>
 				</Pressable>
+=======
+				<Link href='/(dashboard)/home'>
+					<Pressable
+						style={({ pressed }) => [
+							styles.button,
+							{ opacity: pressed ? '0.9' : '1' },
+						]}
+						onPress={() => router.push('/(dashboard)/home')}>
+						<Text style={styles.buttonText}>Sign In</Text>
+					</Pressable>
+				</Link>
+>>>>>>> c2b289e (added frontend)
 				<Link href='/(auth)/signup'>
 					<Pressable
 						style={({ pressed }) => [

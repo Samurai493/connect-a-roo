@@ -46,7 +46,7 @@ const VerifyEmail = () => {
 							},
 							styles.button,
 						]}
-						onPress={() => router.push('/(auth)/signin')}>
+						onPress={() => router.push('/(auth)/newPassword')}>
 						<Text style={styles.buttonText}>Verify</Text>
 					</Pressable>
 				</View>
